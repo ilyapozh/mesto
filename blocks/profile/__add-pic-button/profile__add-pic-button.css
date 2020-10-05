@@ -1,0 +1,23 @@
+.profile__add-pic-button {
+    width: 150px;
+    height: 50px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 2%;
+    background-image: url(../../../images/add-pic.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.profile__add-pic-button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__add-pic-button {
+        width: 282px;
+        height: 50px;
+        margin-top: 35px;
+    }
+}
