@@ -1,0 +1,44 @@
+const buttonOpenPopup = document.querySelector('.profile__edit-button');
+const buttonClosePopup = document.querySelector('.popup__close-button');
+const popup = document.querySelector('.popup');
+let formElement = popup.querySelector('.popup__container');
+
+
+const popupToggle = function () {
+    popup.classList.toggle('popup_opened');
+}
+
+
+buttonOpenPopup.addEventListener('click', popupToggle);
+buttonClosePopup.addEventListener('click', popupToggle);
+
+// Находим форму в DOM
+// Воспользуйтесь методом querySelector)
+
+// Обработчик «отправки» формы, хотя пока
+// она никуда отправляться не будет
+function formSubmitHandler (evt) {
+    evt.preventDefault(); 
+
+    // Находим поля формы в DOM
+    let nameInput = formElement.querySelector('.popup__name');
+    let jobInput = formElement.querySelector('.popup__job');
+
+    // Получите значение полей из свойства value
+    console.log(nameInput.value);
+    console.log(jobInput.value);
+
+    // Выберите элементы, куда должны быть вставлены значения полей
+    let profileName = document.querySelector('.profile__userName');
+    let profileJob = document.querySelector('.profile__profession');
+
+    // Вставьте новые значения с помощью textContent
+    profileName.textContent = nameInput.value;
+    profileJob.textContent = jobInput.value;
+}
+
+formElement.addEventListener('submit', formSubmitHandler);
+formElement.addEventListener('submit', popupToggle);
+
+
+

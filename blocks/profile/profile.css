@@ -5,7 +5,7 @@
 @import url(__profession/profile__profession.css);
 @import url(__userName/profile__userName.css);
 @import url(__text/profile__text.css);
-
+@import url(__content/profile__content.css);
 
 .profile {
     display: flex;
@@ -24,6 +24,6 @@
     .profile {
         display: flex;
         flex-direction: column;
-        
+        margin-top: 55px;
     }
 }

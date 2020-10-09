@@ -18,14 +18,16 @@
             <section class="profile">
                 <img src="./images/image.jpg" alt="Жак-Ив Кусто" class="profile__foto">
                 <div class="profile__info">
+                    <div class = 'profile__content'>
                     <div class = 'profile__text'>
                         <p class = 'profile__userName'>
                             Жак-Ив Кусто 
-                            <button class = 'profile__edit-button'></button>
                         </p>
-                        <p class="profile__profession">
+                         <p class="profile__profession">
                             Исследователь океана
                         </p>
+                    </div>
+                    <button class = 'profile__edit-button'></button>
                     </div>
                     <button class = 'profile__add-pic-button'></button>
                 </div>    
@@ -102,26 +104,29 @@
         </footer>
         
         <section class="popup">
+            
             <div class="popup__background">
-                <button class="popup__close-button"></button>
-                <div class="popup__container">
+                
+                <form class="popup__container">
                     
                     <h2 class="popup__title">Редактировать профиль</h2>
                     
-                    <p class="popup__user-name">
+                    <input type='textarea' class="popup__name" value='Жак-Ив Кусто'>
+                       
+                    <input type='textarea' class="popup__job" value='Исследователь океана'>
+            
+                    <button class="popup__save-button">
+                        Сохранить
+                    </button>
 
-                    </p>
-                    
-                    <p class="popup__user-profession">
-
-                    </p>
-                    
-                    <button class="popup__save-button"></button>
-
-                </div>
+                    <input type='' class="popup__close-button" value = ''>
+                </form>
+                
             </div>
         </section>
 
     </div>
+
+    <script src="./scripts/index/index.js"></script>
 </body>
 </html>

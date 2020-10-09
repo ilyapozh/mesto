@@ -3,11 +3,13 @@
 @import url(__container/popup__container.css);
 @import url(__save-button/popup__save-button.css);
 @import url(__title/popup__title.css);
-@import url(__user-name/popup__user-name.css);
-@import url(__user-profession/popup__user-profession.css);
+@import url(__job/popup__job.css);
+@import url(__name/popup__name.css);
 
 .popup {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
+    display: none;
 }
+
