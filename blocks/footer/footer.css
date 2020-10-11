@@ -5,7 +5,7 @@
     padding: 65px 0 60px 0;
     display: flex;
     width: 69%;
-    max-width: 1280px;
+    max-width: 880px;
 }
 
 @media screen and (max-width: 1023px) {
