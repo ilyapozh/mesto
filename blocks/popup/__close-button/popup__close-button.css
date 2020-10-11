@@ -8,8 +8,9 @@
     top: -42px;
     background-color: black;
     border: none;
-    background-image: url(../../../images/Close\ Icon.png);
     background-position: center;
+    
+    
 }
 
 .popup__close-button:hover {
@@ -24,4 +25,13 @@
         right: 0;
         top: -28px;
     }
+}
+
+.popup__close-button::after {
+    content: '';
+    display: block;
+    background-image: url(../../../images/Close\ Icon.svg);
+    opacity: 0;
+    z-index: -1;
+    
 }
