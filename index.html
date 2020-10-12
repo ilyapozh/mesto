@@ -19,17 +19,13 @@
                 <img src="./images/image.jpg" alt="Жак-Ив Кусто" class="profile__foto">
                 <div class="profile__info">
                     <div class = 'profile__content'>
-                    <div class = 'profile__text'>
-                        <p class = 'profile__userName'>
-                            Жак-Ив Кусто 
-                        </p>
-                         <p class="profile__profession">
-                            Исследователь океана
-                        </p>
+                        <div class = 'profile__text'>
+                            <p class = 'profile__userName'>Жак-Ив Кусто </p>
+                            <p class="profile__profession">Исследователь океана</p>
+                        </div>
+                        <button class = 'profile__edit-button' type="button"></button>
                     </div>
-                    <button class = 'profile__edit-button'></button>
-                    </div>
-                    <button class = 'profile__add-pic-button'></button>
+                    <button class = 'profile__add-pic-button' type="button"></button>
                 </div>    
             </section>
         
@@ -107,19 +103,19 @@
             
             <div class="popup__background">
                 
-                <form class="popup__container">
+                <form class="popup__container" name="container">
                     
                     <h2 class="popup__title">Редактировать профиль</h2>
                     
-                    <input type='textarea' class="popup__name" value='Жак-Ив Кусто'>
+                    <input type='textarea' class="popup__input popup__input_content_name" name="name" value="">
                        
-                    <input type='textarea' class="popup__job" value='Исследователь океана'>
+                    <input type='textarea' class="popup__input popup__input_content_job" name='job' value="">
             
                     <button class="popup__save-button">
                         Сохранить
                     </button>
 
-                    <input type='' class="popup__close-button" value = ''>
+                    <button type="button" class="popup__close-button" value = ''>
                 </form>
                 
             </div>

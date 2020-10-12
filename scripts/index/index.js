@@ -4,13 +4,10 @@ const popup = document.querySelector('.popup');
 let formElement = popup.querySelector('.popup__container');
 
 
+
 const popupToggle = function () {
     popup.classList.toggle('popup_opened');
 }
-
-
-buttonOpenPopup.addEventListener('click', popupToggle);
-buttonClosePopup.addEventListener('click', popupToggle);
 
 // Находим форму в DOM
 // Воспользуйтесь методом querySelector)
@@ -21,8 +18,8 @@ function formSubmitHandler (evt) {
     evt.preventDefault(); 
 
     // Находим поля формы в DOM
-    let nameInput = formElement.querySelector('.popup__name');
-    let jobInput = formElement.querySelector('.popup__job');
+    let nameInput = formElement.querySelector('.popup__input_content_name');
+    let jobInput = formElement.querySelector('.popup__input_content_job');
 
     // Получите значение полей из свойства value
     console.log(nameInput.value);
@@ -37,8 +34,31 @@ function formSubmitHandler (evt) {
     profileJob.textContent = jobInput.value;
 }
 
+function copyText () {
+
+    let profileName = document.querySelector('.profile__userName');
+    let profileJob = document.querySelector('.profile__profession');
+    let nameInput = formElement.querySelector('.popup__input_content_name');
+    let jobInput = formElement.querySelector('.popup__input_content_job');
+
+    console.log(profileName.textContent);
+    console.log(profileJob.textContent);
+
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
+}
+
+
 formElement.addEventListener('submit', formSubmitHandler);
 formElement.addEventListener('submit', popupToggle);
+
+buttonOpenPopup.addEventListener('click', popupToggle);
+buttonClosePopup.addEventListener('click', popupToggle);
+buttonOpenPopup.addEventListener('click', copyText);
+
+
+
+
 
 
 
