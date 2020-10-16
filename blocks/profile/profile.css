@@ -1,17 +1,8 @@
-@import url(__add-pic-button/profile__add-pic-button.css);
-@import url(__edit-button/profile__edit-button.css);
-@import url(__foto/profile__foto.css);
-@import url(__info/profile__info.css);
-@import url(__profession/profile__profession.css);
-@import url(__userName/profile__userName.css);
-@import url(__text/profile__text.css);
-@import url(__content/profile__content.css);
-
 .profile {
     display: flex;
     width: 69%;
     max-width: 880px;
-    margin: 35px auto;
+    margin: 35px auto 48px;
 }
 
 @media screen and (max-width: 1023px) {
@@ -24,6 +15,6 @@
     .profile {
         display: flex;
         flex-direction: column;
-        margin-top: 55px;
+        margin-top: 45px;
     }
 }

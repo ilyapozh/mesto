@@ -11,85 +11,87 @@
     <div class="page">
         
         <header class="header">
-            <img src="./images/Vector.png" alt="Логотип" class="header__logo">
+            <img src="./images/logo-header.svg" alt="Логотип" class="header__logo">
         </header>
         
         <main class="main">
             <section class="profile">
                 <img src="./images/image.jpg" alt="Жак-Ив Кусто" class="profile__foto">
                 <div class="profile__info">
-                    <div class = 'profile__content'>
-                        <div class = 'profile__text'>
-                            <p class = 'profile__userName'>Жак-Ив Кусто </p>
+                    <div class = "profile__content">
+                        <div class = "profile__text">
+                            <h1 class = "profile__user-name">Жак-Ив Кусто </h1>
                             <p class="profile__profession">Исследователь океана</p>
                         </div>
-                        <button class = 'profile__edit-button' type="button"></button>
+                        <button aria-label="edit-button" class = "profile__edit-button" type="button"></button>
                     </div>
-                    <button class = 'profile__add-pic-button' type="button"></button>
+                    <button aria-label="add-pic-button" class = "profile__add-pic-button" type="button"></button>
                 </div>    
             </section>
-        
-            <ul class = 'foto-table'>
-                <li class="foto-table__element">
-                    <img src="./images/Balboa Island, Newport Beach, CA, USA.jpg" alt="Остров Бальбоа" class="foto-table__foto">
-                    <div class="foto-table__content">
-                        <p class="foto-table__name">
-                            Остров Бальбоа
-                        </p>
-                        <button class = 'foto-table__like-button'></button>
-                    </div>
-                </li>
-
-                <li class="foto-table__element">
-                    <img src="./images/Egypt .jpg" alt="Египет" class="foto-table__foto">
-                    <div class="foto-table__content">
-                        <p class="foto-table__name">
-                            Египет
-                        </p>
-                        <button class = 'foto-table__like-button'></button>
-                    </div>
+            
+            <section class="foto">
+                <ul class = "foto-table">
+                    <li class="foto-table__element">
+                        <img src="./images/USA.jpg" alt="Остров Бальбоа" class="foto-table__foto">
+                        <div class="foto-table__content">
+                            <h2 class="foto-table__name">
+                                Остров Бальбоа
+                            </h2>
+                            <button class = "foto-table__like-button"></button>
+                        </div>
                     </li>
 
-                <li class="foto-table__element">
-                    <img src="./images/Lofoten, Norway.jpg" alt="Норвегия" class="foto-table__foto">
-                    <div class="foto-table__content">
-                        <p class="foto-table__name">
-                            Норвегия
-                        </p>
-                        <button class = 'foto-table__like-button'></button>
-                    </div>
-                </li>
+                    <li class="foto-table__element">
+                        <img src="./images/Egypt.jpg" alt="Египет" class="foto-table__foto">
+                        <div class="foto-table__content">
+                            <h2 class="foto-table__name">
+                                Египет
+                            </h2>
+                            <button class = "foto-table__like-button"></button>
+                        </div>
+                        </li>
 
-                <li class="foto-table__element">
-                    <img src="./images/Mauna Kea, Hawaii, USA.jpg" alt="Гаваи" class="foto-table__foto">
-                    <div class="foto-table__content">
-                        <p class="foto-table__name">
-                            Гаваи
-                        </p>
-                        <button class = 'foto-table__like-button'></button>
-                    </div>
-                </li>
+                    <li class="foto-table__element">
+                        <img src="./images/Norway.jpg" alt="Норвегия" class="foto-table__foto">
+                        <div class="foto-table__content">
+                            <h2 class="foto-table__name">
+                                Норвегия
+                            </h2>
+                            <button class = "foto-table__like-button"></button>
+                        </div>
+                    </li>
 
-                <li class="foto-table__element">
-                    <img src="./images/Royan, France.jpg" alt="Франция" class="foto-table__foto">
-                    <div class="foto-table__content">
-                        <p class="foto-table__name">
-                            Франция                           
-                        </p>
-                        <button class = 'foto-table__like-button'></button>
-                    </div>
-                </li>
+                    <li class="foto-table__element">
+                        <img src="./images/Hawaii.jpg" alt="Гаваи" class="foto-table__foto">
+                        <div class="foto-table__content">
+                            <h2 class="foto-table__name">
+                                Гаваи
+                            </h2>
+                            <button class = "foto-table__like-button"></button>
+                        </div>
+                    </li>
 
-                <li class="foto-table__element">
-                    <img src="./images/Split, Kroatien.jpg" alt="Хорватия" class="foto-table__foto">
-                    <div class="foto-table__content">
-                        <p class="foto-table__name">
-                            Хорватия                           
-                        </p>
-                        <button class = 'foto-table__like-button'></button>
-                    </div>
-                </li>
-            </ul>
+                    <li class="foto-table__element">
+                        <img src="./images/France.jpg" alt="Франция" class="foto-table__foto">
+                        <div class="foto-table__content">
+                            <h2 class="foto-table__name">
+                                Франция                           
+                            </h2>
+                            <button class = "foto-table__like-button"></button>
+                        </div>
+                    </li>
+
+                    <li class="foto-table__element">
+                        <img src="./images/Croatia.jpg" alt="Хорватия" class="foto-table__foto">
+                        <div class="foto-table__content">
+                            <h2 class="foto-table__name">
+                                Хорватия                           
+                            </h2>
+                            <button class = "foto-table__like-button"></button>
+                        </div>
+                    </li>
+                </ul>
+        </section>
             
         </main>
     
@@ -107,15 +109,16 @@
                     
                     <h2 class="popup__title">Редактировать профиль</h2>
                     
-                    <input type='textarea' class="popup__input popup__input_content_name" name="name" value="">
+                    <input type="text" class="popup__input popup__input_content_name" name="name" value="">
                        
-                    <input type='textarea' class="popup__input popup__input_content_job" name='job' value="">
+                    <input type="text" class="popup__input popup__input_content_job" name="job" value="">
             
-                    <button class="popup__save-button">
+                    <button type="submit" class="popup__save-button">
                         Сохранить
                     </button>
 
-                    <button type="button" class="popup__close-button" value = ''>
+                    <button aria-label="close-button" type="button" class="popup__close-button"></button>>
+                
                 </form>
                 
             </div>

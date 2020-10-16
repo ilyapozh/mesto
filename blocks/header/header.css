@@ -1,5 +1,3 @@
-@import url(__logo/header__logo.css);
-
 .header {
     max-width: 880px;
     display: flex;
@@ -23,8 +21,8 @@
 
 @media screen and (max-width: 767px) {
     .header {
-        padding-top: 20px;
-        padding-bottom: 20px;
-        border-bottom: none;
+        padding-top: 30px;
+        padding-bottom: 32px;
+        padding-left: 30px;
     }
 }
