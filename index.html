@@ -23,9 +23,9 @@
                             <h1 class = "profile__user-name">Жак-Ив Кусто </h1>
                             <p class="profile__profession">Исследователь океана</p>
                         </div>
-                        <button aria-label="edit-button" class = "profile__edit-button" type="button"></button>
+                        <button aria-label="edit-button" type="button" class = "profile__edit-button"></button>
                     </div>
-                    <button aria-label="add-pic-button" class = "profile__add-pic-button" type="button"></button>
+                    <button aria-label="add-pic-button" type="button" class = "profile__add-pic-button" ></button>
                 </div>    
             </section>
             
@@ -37,7 +37,7 @@
                             <h2 class="foto-table__name">
                                 Остров Бальбоа
                             </h2>
-                            <button class = "foto-table__like-button"></button>
+                            <button type="button" class ="foto-table__like-button"></button>
                         </div>
                     </li>
 
@@ -47,7 +47,7 @@
                             <h2 class="foto-table__name">
                                 Египет
                             </h2>
-                            <button class = "foto-table__like-button"></button>
+                            <button type="button" class = "foto-table__like-button"></button>
                         </div>
                         </li>
 
@@ -57,7 +57,7 @@
                             <h2 class="foto-table__name">
                                 Норвегия
                             </h2>
-                            <button class = "foto-table__like-button"></button>
+                            <button type="button" class = "foto-table__like-button"></button>
                         </div>
                     </li>
 
@@ -67,7 +67,7 @@
                             <h2 class="foto-table__name">
                                 Гаваи
                             </h2>
-                            <button class = "foto-table__like-button"></button>
+                            <button type="button" class = "foto-table__like-button"></button>
                         </div>
                     </li>
 
@@ -77,7 +77,7 @@
                             <h2 class="foto-table__name">
                                 Франция                           
                             </h2>
-                            <button class = "foto-table__like-button"></button>
+                            <button type="button" class = "foto-table__like-button"></button>
                         </div>
                     </li>
 
@@ -87,7 +87,7 @@
                             <h2 class="foto-table__name">
                                 Хорватия                           
                             </h2>
-                            <button class = "foto-table__like-button"></button>
+                            <button type="button" class = "foto-table__like-button"></button>
                         </div>
                     </li>
                 </ul>
@@ -101,27 +101,23 @@
             </p>
         </footer>
         
-        <section class="popup">
+        <section class="popup">   
+            <form class="popup__container" name="container">
+                
+                <h2 class="popup__title">Редактировать профиль</h2>
+                
+                <input type="text" class="popup__input popup__input_content_name" name="name" value="">
+                   
+                <input type="text" class="popup__input popup__input_content_job" name="job" value="">
+        
+                <button type="submit" class="popup__save-button">
+                    Сохранить
+                </button>
+                <button aria-label="кнопка закрыть" type="button" class="popup__close-button"></button>
             
-            <div class="popup__background">
-                
-                <form class="popup__container" name="container">
-                    
-                    <h2 class="popup__title">Редактировать профиль</h2>
-                    
-                    <input type="text" class="popup__input popup__input_content_name" name="name" value="">
-                       
-                    <input type="text" class="popup__input popup__input_content_job" name="job" value="">
+            </form>
             
-                    <button type="submit" class="popup__save-button">
-                        Сохранить
-                    </button>
-
-                    <button aria-label="close-button" type="button" class="popup__close-button"></button>>
-                
-                </form>
-                
-            </div>
+        
         </section>
 
     </div>

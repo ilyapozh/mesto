@@ -11,7 +11,7 @@ let profileJob = document.querySelector('.profile__profession');
 
 const popupToggle = function () {
     popup.classList.toggle('popup_opened');
-}
+};
 
 
 function formSubmitHandler (evt) {
@@ -20,7 +20,7 @@ function formSubmitHandler (evt) {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     
-    
+    popupToggle();
 }
 
 function copyText () {
@@ -28,14 +28,12 @@ function copyText () {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 
-    
+    popupToggle();
 }
 
 
 formElement.addEventListener('submit', formSubmitHandler);
-formElement.addEventListener('submit', popupToggle);
 
-buttonOpenPopup.addEventListener('click', popupToggle);
 buttonClosePopup.addEventListener('click', popupToggle);
 buttonOpenPopup.addEventListener('click', copyText);
 
