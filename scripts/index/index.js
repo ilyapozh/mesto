@@ -47,9 +47,11 @@ const initialCards = [
 initialCards.forEach(card => {
     const cardClone = cardTemplate.cloneNode(true);
     
-    
     cardClone.querySelector('.foto-table__name').textContent = card.name;
     cardClone.querySelector('.foto-table__foto').src = card.link;
+    cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
+        evt.target.classList.toggle('foto-table__like-button_black');
+    })
 
     fotoTable.append(cardClone);
 
@@ -83,6 +85,9 @@ function formSubmitHandlerAddPic (evt) {
 
     cardClone.querySelector('.foto-table__name').textContent = placeNameInput.value;
     cardClone.querySelector('.foto-table__foto').src = linkInput.value;
+    cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
+        evt.target.classList.toggle('foto-table__like-button_black');
+    })
 
     fotoTable.prepend(cardClone);
 
@@ -113,17 +118,7 @@ buttonOpenPopupEdit.addEventListener('click', copyText);
 buttonOpenPopupAddPic.addEventListener('click', popupAddPicToggle);
 
 
-fotoTable.addEventListener('click', function(evt) {
-    const likeButtons = fotoTable.querySelectorAll('.foto-table__like-button');
-    console.log(likeButtons)
-    likeButtons.forEach (buuton => {
-        if (evt.target === likeButtons) {
-            const currentButton = evt.target;
-            currentButton.classList.toggle('foto-table__like-button_black'); 
-        }
-    })
 
-})
 
 
 
