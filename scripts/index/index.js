@@ -1,42 +1,129 @@
-const buttonOpenPopup = document.querySelector('.profile__edit-button');
-const buttonClosePopup = document.querySelector('.popup__close-button');
-const popup = document.querySelector('.popup');
-let formElement = popup.querySelector('.popup__container');
-
-let nameInput = formElement.querySelector('.popup__input_content_name');
-let jobInput = formElement.querySelector('.popup__input_content_job');
+const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
+const buttonClosePopupEdit = document.querySelector('.popup__close-button');
+const popupEdit = document.querySelector('.popup');
+let formElementEdit = popupEdit.querySelector('.popup__container');
+let nameInput = formElementEdit.querySelector('.popup__input_content_name');
+let jobInput = formElementEdit.querySelector('.popup__input_content_job');
 let profileName = document.querySelector('.profile__user-name');
 let profileJob = document.querySelector('.profile__profession');
+const popupAddPic = document.querySelector('.popup_content_add-pic');
+const buttonOpenPopupAddPic = document.querySelector('.profile__add-pic-button');
+const buttonClosePopupAddPic = popupAddPic.querySelector('.popup__close-button');
+const cardTemplate = document.querySelector("#card").content;
+const fotoTable = document.querySelector(".foto-table");
+let formElementAddPic = popupAddPic.querySelector('.popup__container');
+let placeNameInput = formElementAddPic.querySelector('.popup__input_content_place-name');
+let linkInput = formElementAddPic.querySelector('.popup__input_content_link');
 
 
-const popupToggle = function () {
-    popup.classList.toggle('popup_opened');
+
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+
+initialCards.forEach(card => {
+    const cardClone = cardTemplate.cloneNode(true);
+    
+    
+    cardClone.querySelector('.foto-table__name').textContent = card.name;
+    cardClone.querySelector('.foto-table__foto').src = card.link;
+
+    fotoTable.append(cardClone);
+
+});
+
+
+
+const popupEditToggle = function () {
+    popupEdit.classList.toggle('popup_opened');
 };
 
+const popupAddPicToggle = function () {
+    popupAddPic.classList.toggle('popup_opened');
+}
 
-function formSubmitHandler (evt) {
+
+
+function formSubmitHandlerEdit (evt) {
     evt.preventDefault(); 
 
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     
-    popupToggle();
+    popupEditToggle();
 }
+
+
+function formSubmitHandlerAddPic (evt) {
+    evt.preventDefault(); 
+    const cardClone = cardTemplate.cloneNode(true);
+
+    cardClone.querySelector('.foto-table__name').textContent = placeNameInput.value;
+    cardClone.querySelector('.foto-table__foto').src = linkInput.value;
+
+    fotoTable.prepend(cardClone);
+
+    popupAddPicToggle();
+}
+
 
 function copyText () {
 
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 
-    popupToggle();
+    popupEditToggle();
 }
 
 
-formElement.addEventListener('submit', formSubmitHandler);
 
-buttonClosePopup.addEventListener('click', popupToggle);
-buttonOpenPopup.addEventListener('click', copyText);
 
+
+
+formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
+formElementAddPic.addEventListener('submit', formSubmitHandlerAddPic);
+
+buttonClosePopupEdit.addEventListener('click', popupEditToggle);
+buttonClosePopupAddPic.addEventListener('click', popupAddPicToggle);
+
+buttonOpenPopupEdit.addEventListener('click', copyText);
+buttonOpenPopupAddPic.addEventListener('click', popupAddPicToggle);
+
+
+fotoTable.addEventListener('click', function(evt) {
+    const likeButtons = fotoTable.querySelectorAll('.foto-table__like-button');
+    console.log(likeButtons)
+    likeButtons.forEach (buuton => {
+        if (evt.target === likeButtons) {
+            const currentButton = evt.target;
+            currentButton.classList.toggle('foto-table__like-button_black'); 
+        }
+    })
+
+})
 
 
 

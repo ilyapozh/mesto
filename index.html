@@ -30,7 +30,10 @@
             </section>
             
             <section class="foto">
+                
                 <ul class = "foto-table">
+
+                    <!--
                     <li class="foto-table__element">
                         <img src="./images/USA.jpg" alt="Остров Бальбоа" class="foto-table__foto">
                         <div class="foto-table__content">
@@ -90,8 +93,10 @@
                             <button type="button" class = "foto-table__like-button"></button>
                         </div>
                     </li>
+                    -->
                 </ul>
-        </section>
+                
+            </section>
             
         </main>
     
@@ -101,7 +106,7 @@
             </p>
         </footer>
         
-        <section class="popup">   
+        <section class="popup popup_content_edit-profile">   
             <form class="popup__container" name="container">
                 
                 <h2 class="popup__title">Редактировать профиль</h2>
@@ -116,12 +121,57 @@
                 <button aria-label="кнопка закрыть" type="button" class="popup__close-button"></button>
             
             </form>
-            
+        </section>
+
+        <section class="popup popup_content_edit-profile">   
+            <form class="popup__container" name="container">
+                
+                <h2 class="popup__title">Редактировать профиль</h2>
+                
+                <input type="text" class="popup__input popup__input_content_name" name="name" value="">
+                   
+                <input type="text" class="popup__input popup__input_content_job" name="job" value="">
         
+                <button type="submit" class="popup__save-button">
+                    Сохранить
+                </button>
+                <button aria-label="кнопка закрыть" type="button" class="popup__close-button"></button>
+            
+            </form>
+        </section>
+
+        <section class="popup popup_content_add-pic">   
+            <form class="popup__container" name="container">
+                
+                <h2 class="popup__title">Новое место</h2>
+                
+                <input type="text" placeholder="Название" class="popup__input popup__input_content_place-name" name="name" value="" >
+                   
+                <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_content_link" name="job" value="">
+        
+                <button type="submit" class="popup__save-button">
+                    Создать
+                </button>
+                <button aria-label="кнопка закрыть" type="button" class="popup__close-button"></button>
+            
+            </form>
         </section>
 
     </div>
+    
+    <template id="card">
+        <li class="foto-table__list">
+            <div class="foto-table__element">
+                <img src="" alt="" class="foto-table__foto">
+                <div class="foto-table__content">
+                    <h2 class="foto-table__name"></h2>
+                    <button type="button" class ="foto-table__like-button"></button>
+                </div>
+            </div>
+        </li>  
+    </template>
 
+    
     <script src="./scripts/index/index.js"></script>
 </body>
 </html>
