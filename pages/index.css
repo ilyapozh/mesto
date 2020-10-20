@@ -25,6 +25,7 @@
 @import url(../blocks/foto-table/__name/foto-table__name.css);
 @import url(../blocks/foto-table/__list/foto-table__list.css);
 @import url(../blocks/foto-table/__like-button/_black/foto-table__like-button_black.css);
+@import url(../blocks/foto-table/__delete-button/foto-table__delete-button.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);
@@ -43,5 +44,6 @@
 @import url(../blocks/popup/__input/_content/popup__input_content_place-name.css);
 @import url(../blocks/popup/_content/popup_content_add-pic.css);
 @import url(../blocks/popup/_content/popup_content_edit-profile.css);
-
-
+@import url(../blocks/popup/__pic-title/popup__pic-title.css);
+@import url(../blocks/popup/__full-pic-container/popup__full-pic-container.css);
+@import url(../blocks/popup/_content/popup_content_full-pic.css);

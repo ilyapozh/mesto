@@ -32,68 +32,6 @@
             <section class="foto">
                 
                 <ul class = "foto-table">
-
-                    <!--
-                    <li class="foto-table__element">
-                        <img src="./images/USA.jpg" alt="Остров Бальбоа" class="foto-table__foto">
-                        <div class="foto-table__content">
-                            <h2 class="foto-table__name">
-                                Остров Бальбоа
-                            </h2>
-                            <button type="button" class ="foto-table__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="foto-table__element">
-                        <img src="./images/Egypt.jpg" alt="Египет" class="foto-table__foto">
-                        <div class="foto-table__content">
-                            <h2 class="foto-table__name">
-                                Египет
-                            </h2>
-                            <button type="button" class = "foto-table__like-button"></button>
-                        </div>
-                        </li>
-
-                    <li class="foto-table__element">
-                        <img src="./images/Norway.jpg" alt="Норвегия" class="foto-table__foto">
-                        <div class="foto-table__content">
-                            <h2 class="foto-table__name">
-                                Норвегия
-                            </h2>
-                            <button type="button" class = "foto-table__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="foto-table__element">
-                        <img src="./images/Hawaii.jpg" alt="Гаваи" class="foto-table__foto">
-                        <div class="foto-table__content">
-                            <h2 class="foto-table__name">
-                                Гаваи
-                            </h2>
-                            <button type="button" class = "foto-table__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="foto-table__element">
-                        <img src="./images/France.jpg" alt="Франция" class="foto-table__foto">
-                        <div class="foto-table__content">
-                            <h2 class="foto-table__name">
-                                Франция                           
-                            </h2>
-                            <button type="button" class = "foto-table__like-button"></button>
-                        </div>
-                    </li>
-
-                    <li class="foto-table__element">
-                        <img src="./images/Croatia.jpg" alt="Хорватия" class="foto-table__foto">
-                        <div class="foto-table__content">
-                            <h2 class="foto-table__name">
-                                Хорватия                           
-                            </h2>
-                            <button type="button" class = "foto-table__like-button"></button>
-                        </div>
-                    </li>
-                    -->
                 </ul>
                 
             </section>
@@ -157,12 +95,24 @@
             </form>
         </section>
 
+        <section class="popup popup_content_full-pic">
+            <div class="popup__full-pic-container">
+                
+                <img src="" alt="" class="popup__background">
+                <p class="popup__pic-title"></p>
+                <button type="button" aria-label="кнопка закрыть" class = "popup__close-button"></button>
+            </div>
+            
+        </section>
+
     </div>
     
     <template id="card">
         <li class="foto-table__list">
             <div class="foto-table__element">
+                <button type="button" aria-label="кнопка закрыть" class="foto-table__delete-button"></button>
                 <img src="" alt="" class="foto-table__foto">
+                
                 <div class="foto-table__content">
                     <h2 class="foto-table__name"></h2>
                     <button type="button" class ="foto-table__like-button"></button>

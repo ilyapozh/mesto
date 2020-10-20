@@ -27,11 +27,3 @@
     }
 }
 
-.popup__close-button::after {
-    content: '';
-    display: block;
-    opacity: 0;
-    z-index: -1;
-    
-    
-}

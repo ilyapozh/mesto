@@ -14,8 +14,10 @@ const fotoTable = document.querySelector(".foto-table");
 let formElementAddPic = popupAddPic.querySelector('.popup__container');
 let placeNameInput = formElementAddPic.querySelector('.popup__input_content_place-name');
 let linkInput = formElementAddPic.querySelector('.popup__input_content_link');
-
-
+const popupFullPic = document.querySelector('.popup_content_full-pic');
+let popupFullPicInput = popupFullPic.querySelector('.popup__background');
+let popupPicName = popupFullPic.querySelector('.popup__pic-title');
+const buttonClosePopupFullPic = popupFullPic.querySelector('.popup__close-button');
 
 const initialCards = [
     {
@@ -49,9 +51,20 @@ initialCards.forEach(card => {
     
     cardClone.querySelector('.foto-table__name').textContent = card.name;
     cardClone.querySelector('.foto-table__foto').src = card.link;
+    
     cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('foto-table__like-button_black');
-    })
+    });
+
+    cardClone.querySelector('.foto-table__delete-button').addEventListener('click', function(evt) {
+        evt.target.parentElement.parentElement.remove();
+    });
+
+    cardClone.querySelector('.foto-table__foto').addEventListener('click', function (evt) {
+        popupFullPicInput.src = evt.target.src;
+        popupPicName.textContent = card.name;
+        popupFullPic.classList.toggle('popup_opened');
+    });
 
     fotoTable.append(cardClone);
 
@@ -65,6 +78,11 @@ const popupEditToggle = function () {
 
 const popupAddPicToggle = function () {
     popupAddPic.classList.toggle('popup_opened');
+}
+
+const popupFullPicToggle = function () {
+    console.log('click')
+    popupFullPic.classList.toggle('popup_opened');
 }
 
 
@@ -87,7 +105,17 @@ function formSubmitHandlerAddPic (evt) {
     cardClone.querySelector('.foto-table__foto').src = linkInput.value;
     cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('foto-table__like-button_black');
-    })
+    });
+    cardClone.querySelector('.foto-table__delete-button').addEventListener('click', function(evt) {
+        evt.target.parentElement.parentElement.remove();
+    });
+
+    cardClone.querySelector('.foto-table__foto').addEventListener('click', function (evt) {
+        popupFullPicInput.src = evt.target.src;
+        popupPicName.textContent = card.name;
+        popupFullPic.classList.toggle('popup_opened');
+    });
+
 
     fotoTable.prepend(cardClone);
 
@@ -105,14 +133,12 @@ function copyText () {
 
 
 
-
-
-
 formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 formElementAddPic.addEventListener('submit', formSubmitHandlerAddPic);
 
 buttonClosePopupEdit.addEventListener('click', popupEditToggle);
 buttonClosePopupAddPic.addEventListener('click', popupAddPicToggle);
+buttonClosePopupFullPic.addEventListener('click', popupFullPicToggle);
 
 buttonOpenPopupEdit.addEventListener('click', copyText);
 buttonOpenPopupAddPic.addEventListener('click', popupAddPicToggle);

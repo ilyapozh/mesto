@@ -1,0 +1,17 @@
+.foto-table__delete-button {
+    height: 18px;
+    width: 19px;
+    position: relative;
+    left: 249px;
+    bottom: -36px;
+    background-image: url(../../../images/delete.svg);
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+}
+
+.foto-table__delete-button:hover {
+    opacity: 0.5;
+    cursor: pointer;
+}
