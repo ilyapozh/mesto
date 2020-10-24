@@ -46,45 +46,39 @@ const initialCards = [
     }
 ];
 
-initialCards.forEach(card => {
+
+function createCard(item) {
     const cardClone = cardTemplate.cloneNode(true);
+    const cardImage = cardClone.querySelector('.foto-table__foto');
     
-    cardClone.querySelector('.foto-table__name').textContent = card.name;
-    cardClone.querySelector('.foto-table__foto').src = card.link;
-    
+    cardClone.querySelector('.foto-table__name').textContent = item.name;
+    cardImage.src = item.link;
     cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('foto-table__like-button_black');
     });
-
     cardClone.querySelector('.foto-table__delete-button').addEventListener('click', function(evt) {
         evt.target.parentElement.parentElement.remove();
     });
 
-    cardClone.querySelector('.foto-table__foto').addEventListener('click', function (evt) {
+    cardImage.addEventListener('click', function (evt) {
         popupFullPicInput.src = evt.target.src;
-        popupPicName.textContent = card.name;
-        popupFullPic.classList.toggle('popup_opened');
+        popupPicName.textContent = item.name;
+        togglePopup(popupFullPic);
     });
 
-    fotoTable.append(cardClone);
+    return cardClone;
+}
 
-});
-
-
-
-const popupEditToggle = function () {
-    popupEdit.classList.toggle('popup_opened');
+function togglePopup(popup) {
+    popup.classList.toggle('popup_opened');
 };
 
-const popupAddPicToggle = function () {
-    popupAddPic.classList.toggle('popup_opened');
-}
+initialCards.forEach(card => {
+    let curCard = createCard(card);
 
-const popupFullPicToggle = function () {
-    console.log('click')
-    popupFullPic.classList.toggle('popup_opened');
-}
+    fotoTable.append(curCard);
 
+});
 
 
 function formSubmitHandlerEdit (evt) {
@@ -93,33 +87,20 @@ function formSubmitHandlerEdit (evt) {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     
-    popupEditToggle();
+    togglePopup(popupEdit);
 }
 
 
 function formSubmitHandlerAddPic (evt) {
     evt.preventDefault(); 
-    const cardClone = cardTemplate.cloneNode(true);
+    let item = {
+        name: `${placeNameInput.value}`,
+        link: `${linkInput.value}`
+    };
+    
+    fotoTable.prepend(createCard(item));
 
-    cardClone.querySelector('.foto-table__name').textContent = placeNameInput.value;
-    cardClone.querySelector('.foto-table__foto').src = linkInput.value;
-    cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
-        evt.target.classList.toggle('foto-table__like-button_black');
-    });
-    cardClone.querySelector('.foto-table__delete-button').addEventListener('click', function(evt) {
-        evt.target.parentElement.parentElement.remove();
-    });
-
-    cardClone.querySelector('.foto-table__foto').addEventListener('click', function (evt) {
-        popupFullPicInput.src = evt.target.src;
-        popupPicName.textContent = card.name;
-        popupFullPic.classList.toggle('popup_opened');
-    });
-
-
-    fotoTable.prepend(cardClone);
-
-    popupAddPicToggle();
+    togglePopup(popupAddPic);
 }
 
 
@@ -128,20 +109,19 @@ function copyText () {
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
 
-    popupEditToggle();
+    togglePopup(popupEdit);
 }
-
 
 
 formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 formElementAddPic.addEventListener('submit', formSubmitHandlerAddPic);
 
-buttonClosePopupEdit.addEventListener('click', popupEditToggle);
-buttonClosePopupAddPic.addEventListener('click', popupAddPicToggle);
-buttonClosePopupFullPic.addEventListener('click', popupFullPicToggle);
+buttonClosePopupEdit.addEventListener('click', () => togglePopup(popupEdit));
+buttonClosePopupAddPic.addEventListener('click', () => togglePopup(popupAddPic));
+buttonClosePopupFullPic.addEventListener('click', () => togglePopup(popupFullPic));
 
 buttonOpenPopupEdit.addEventListener('click', copyText);
-buttonOpenPopupAddPic.addEventListener('click', popupAddPicToggle);
+buttonOpenPopupAddPic.addEventListener('click', () => togglePopup(popupAddPic));
 
 
 
