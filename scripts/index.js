@@ -49,10 +49,12 @@ const initialCards = [
 
 function createCard(item) {
     const cardClone = cardTemplate.cloneNode(true);
+    
     const cardImage = cardClone.querySelector('.foto-table__foto');
     
     cardClone.querySelector('.foto-table__name').textContent = item.name;
     cardImage.src = item.link;
+    cardImage.alt = item.name;
     cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
         evt.target.classList.toggle('foto-table__like-button_black');
     });
@@ -61,7 +63,7 @@ function createCard(item) {
     });
 
     cardImage.addEventListener('click', function (evt) {
-        popupFullPicInput.src = evt.target.src;
+        popupFullPicInput.src = item.link;
         popupPicName.textContent = item.name;
         togglePopup(popupFullPic);
     });
@@ -74,7 +76,7 @@ function togglePopup(popup) {
 };
 
 initialCards.forEach(card => {
-    let curCard = createCard(card);
+    const curCard = createCard(card);
 
     fotoTable.append(curCard);
 
@@ -93,7 +95,7 @@ function formSubmitHandlerEdit (evt) {
 
 function formSubmitHandlerAddPic (evt) {
     evt.preventDefault(); 
-    let item = {
+    const item = {
         name: `${placeNameInput.value}`,
         link: `${linkInput.value}`
     };
@@ -104,7 +106,7 @@ function formSubmitHandlerAddPic (evt) {
 }
 
 
-function copyText () {
+function openEditPopup () {
 
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
@@ -120,7 +122,7 @@ buttonClosePopupEdit.addEventListener('click', () => togglePopup(popupEdit));
 buttonClosePopupAddPic.addEventListener('click', () => togglePopup(popupAddPic));
 buttonClosePopupFullPic.addEventListener('click', () => togglePopup(popupFullPic));
 
-buttonOpenPopupEdit.addEventListener('click', copyText);
+buttonOpenPopupEdit.addEventListener('click', openEditPopup);
 buttonOpenPopupAddPic.addEventListener('click', () => togglePopup(popupAddPic));
 
 
