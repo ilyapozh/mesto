@@ -45,33 +45,18 @@
         </footer>
         
         <section class="popup popup_content_edit-profile">   
-            <form class="popup__container" name="container">
+            <form class="popup__container popup_content_edit-profile" name="container" novalidate>
                 
                 <h2 class="popup__title">Редактировать профиль</h2>
                 
-                <input type="text" class="popup__input popup__input_content_name" name="name" value="">
-                   
-                <input type="text" class="popup__input popup__input_content_job" name="job" value="">
-        
-                <button type="submit" class="popup__save-button">
-                    Сохранить
-                </button>
-                <button aria-label="кнопка закрыть" type="button" class="popup__close-button"></button>
-            
-            </form>
-        </section>
-
-        <section class="popup popup_content_edit-profile">   
-            <form class="popup__container" name="container">
+                <input required minlength="2" id="name-input" type="text" class="popup__input popup__input_content_name" name="name"  placeholder="Имя">
+                <span id="name-input-error" class="popup__error"></span>  
                 
-                <h2 class="popup__title">Редактировать профиль</h2>
+                <input required id="job-input" type="text" class="popup__input popup__input_content_job" name="job"  placeholder="О себе">
+                <span id="job-input-error" class="popup__error"></span> 
                 
-                <input type="text" class="popup__input popup__input_content_name" name="name" value="">
-                   
-                <input type="text" class="popup__input popup__input_content_job" name="job" value="">
-        
                 <button type="submit" class="popup__save-button">
-                    Сохранить
+                    Сохранить 
                 </button>
                 <button aria-label="кнопка закрыть" type="button" class="popup__close-button"></button>
             
@@ -79,14 +64,16 @@
         </section>
 
         <section class="popup popup_content_add-pic">   
-            <form class="popup__container" name="container">
+            <form class="popup__container popup_content_add-pic" name="container" novalidate>
                 
                 <h2 class="popup__title">Новое место</h2>
                 
-                <input type="text" placeholder="Название" class="popup__input popup__input_content_place-name" name="name" value="" >
-                   
-                <input type="text" placeholder="Ссылка на картинку" class="popup__input popup__input_content_link" name="job" value="">
-        
+                <input required id="place-name-input" type="text" placeholder="Название" class="popup__input popup__input_content_place-name" name="name" value="" >
+                <span id="place-name-input-error" class="popup__error"></span> 
+                
+                <input required id="place-img-link-input" type="url" placeholder="Ссылка на картинку" class="popup__input popup__input_content_link" name="job" value="">
+                <span id="place-img-link-input-error" class="popup__error"></span> 
+
                 <button type="submit" class="popup__save-button">
                     Создать
                 </button>
@@ -123,5 +110,6 @@
 
     
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validation.js"></script>
 </body>
 </html>
