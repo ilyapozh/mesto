@@ -10,7 +10,7 @@
     border: none;
     background-position: center;
     background-image: url(../../../images/Close\ Icon.svg);
-    
+    outline: none;
 }
 
 .popup__close-button:hover {
