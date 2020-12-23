@@ -50,3 +50,5 @@
 @import url(../blocks/popup/__error/popup__error.css);
 @import url(../blocks/popup/__input/_state/popup__input_state_invalid.css);
 @import url(../blocks/popup/__save-button/_state/popup__save-button_state_notActive.css);
+@import url(../blocks/popup/__container/_content/popup__container_content_add-pic.css);
+@import url(../blocks/popup/__container/_content/popup__container_content_edit-profile.css);
