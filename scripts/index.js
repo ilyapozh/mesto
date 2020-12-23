@@ -2,11 +2,13 @@ const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
 const buttonClosePopupEdit = document.querySelector('.popup__close-button');
 const popupEdit = document.querySelector('.popup');
 const formElementEdit = popupEdit.querySelector('.popup__container');
+const submitButtonEdit = formElementEdit.querySelector('.popup__save-button');
 const nameInput = formElementEdit.querySelector('.popup__input_content_name');
 const jobInput = formElementEdit.querySelector('.popup__input_content_job');
 const profileName = document.querySelector('.profile__user-name');
 const profileJob = document.querySelector('.profile__profession');
 const popupAddPic = document.querySelector('.popup_content_add-pic');
+const submitButtonAdd = popupAddPic.querySelector('.popup__save-button');
 const buttonOpenPopupAddPic = document.querySelector('.profile__add-pic-button');
 const buttonClosePopupAddPic = popupAddPic.querySelector('.popup__close-button');
 const cardTemplate = document.querySelector("#card").content;
@@ -71,9 +73,29 @@ function createCard(item) {
     return cardClone;
 }
 
+
 function togglePopup(popup) {
     popup.classList.toggle('popup_opened');
+    ableToCloseWithOverlay(popup);
+    ableToCloseWithEsc(popup);
 };
+
+function ableToCloseWithOverlay (popup) {
+    document.addEventListener('click', (evt) => {
+        if ( popup.classList.contains('popup_opened') && evt.target === popup) {
+            togglePopup(popup);
+        }
+    });
+};
+
+function ableToCloseWithEsc(popup) {
+    document.addEventListener('keydown', (evt) => {
+        if ( popup.classList.contains('popup_opened') && evt.key === "Escape" ) {
+           togglePopup(popup);
+        }
+    })
+};
+
 
 initialCards.forEach(card => {
     const curCard = createCard(card);
@@ -101,6 +123,11 @@ function formSubmitHandlerAddPic (evt) {
     };
     
     fotoTable.prepend(createCard(item));
+    
+    placeNameInput.value = '';
+    linkInput.value = '';
+    submitButtonAdd.disabled = true;
+    submitButtonAdd.classList.add('popup__save-button_state_notActive');
 
     togglePopup(popupAddPic);
 }
@@ -110,6 +137,9 @@ function openEditPopup () {
 
     nameInput.value = profileName.textContent;
     jobInput.value = profileJob.textContent;
+
+    checkInputValidity(formElementEdit, nameInput, {inputErrorClass: 'popup__input_state_invalid'});
+    checkInputValidity(formElementEdit, jobInput, {inputErrorClass: 'popup__input_state_invalid'});
 
     togglePopup(popupEdit);
 }
@@ -124,10 +154,6 @@ buttonClosePopupFullPic.addEventListener('click', () => togglePopup(popupFullPic
 
 buttonOpenPopupEdit.addEventListener('click', openEditPopup);
 buttonOpenPopupAddPic.addEventListener('click', () => togglePopup(popupAddPic));
-
-
-
-
 
 
 
