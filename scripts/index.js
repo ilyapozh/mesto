@@ -1,6 +1,6 @@
 const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
 const buttonClosePopupEdit = document.querySelector('.popup__close-button');
-const popupEdit = document.querySelector('.popup');
+const popupEdit = document.querySelector('.popup_content_edit-profile');
 const formElementEdit = popupEdit.querySelector('.popup__container');
 const submitButtonEdit = formElementEdit.querySelector('.popup__save-button');
 const nameInput = formElementEdit.querySelector('.popup__input_content_name');
@@ -21,33 +21,6 @@ const popupFullPicInput = popupFullPic.querySelector('.popup__background');
 const popupPicName = popupFullPic.querySelector('.popup__pic-title');
 const buttonClosePopupFullPic = popupFullPic.querySelector('.popup__close-button');
 
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
 
 function createCard(item) {
     const cardClone = cardTemplate.cloneNode(true);
@@ -61,7 +34,7 @@ function createCard(item) {
         evt.target.classList.toggle('foto-table__like-button_black');
     });
     cardClone.querySelector('.foto-table__delete-button').addEventListener('click', function(evt) {
-        evt.target.parentElement.parentElement.remove();
+        evt.target.closest('.foto-table__list').remove();
     });
 
     cardImage.addEventListener('click', function (evt) {
@@ -75,26 +48,45 @@ function createCard(item) {
 
 
 function togglePopup(popup) {
-    popup.classList.toggle('popup_opened');
-    ableToCloseWithOverlay(popup);
-    ableToCloseWithEsc(popup);
+    if (popup.classList.contains('popup_opened')) {
+        popup.classList.toggle('popup_opened');
+        disableClosWithOverlay (popup)
+        disableToCloseWithEsc(popup)
+        
+    } else {
+        popup.classList.toggle('popup_opened');
+        ableToCloseWithOverlay(popup);
+        ableToCloseWithEsc(popup);
+    }    
 };
 
-function ableToCloseWithOverlay (popup) {
-    document.addEventListener('click', (evt) => {
-        if ( popup.classList.contains('popup_opened') && evt.target === popup) {
-            togglePopup(popup);
-        }
-    });
-};
+function overlayCloseCallBack(popup, evt) {
+    if (popup.classList.contains('popup_opened') && evt.target === popup) { 
+        togglePopup(popup); 
+    } 
+}
 
-function ableToCloseWithEsc(popup) {
-    document.addEventListener('keydown', (evt) => {
-        if ( popup.classList.contains('popup_opened') && evt.key === "Escape" ) {
-           togglePopup(popup);
-        }
-    })
-};
+function ableToCloseWithOverlay (popup) { 
+    document.addEventListener('click', (evt) => overlayCloseCallBack(popup, evt)); 
+}; 
+ 
+function escCloseCallBack (popup, evt) {
+    if (popup.classList.contains('popup_opened') && evt.key === "Escape" ) { 
+        togglePopup(popup); 
+    } 
+}
+
+function ableToCloseWithEsc(popup) { 
+    document.addEventListener('keydown', (evt) => escCloseCallBack (popup, evt)) 
+}; 
+
+function disableClosWithOverlay (popup) {
+    document.removeEventListener('click', (evt) => overlayCloseCallBack(popup, evt));
+}
+
+function disableToCloseWithEsc(popup) { 
+    document.removeEventListener('keydown', (evt) => escCloseCallBack (popup, evt)) 
+}; 
 
 
 initialCards.forEach(card => {
