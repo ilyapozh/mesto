@@ -46,48 +46,32 @@ function createCard(item) {
     return cardClone;
 }
 
+function overlayCloseCallBack(evt) {
+    if (evt.target.classList.contains('popup_opened')) { 
+        const openedPopup = document.querySelector('.popup_opened');
+        togglePopup(openedPopup); 
+    } 
+}
+
+function escCloseCallBack (evt) {
+    if (evt.key === "Escape" ) { 
+        const openedPopup = document.querySelector('.popup_opened');
+        togglePopup(openedPopup); 
+    } 
+}
 
 function togglePopup(popup) {
     if (popup.classList.contains('popup_opened')) {
         popup.classList.toggle('popup_opened');
-        disableClosWithOverlay (popup)
-        disableToCloseWithEsc(popup)
+        document.removeEventListener('keydown', escCloseCallBack);
+        document.removeEventListener('mousedown', overlayCloseCallBack);
         
     } else {
         popup.classList.toggle('popup_opened');
-        ableToCloseWithOverlay(popup);
-        ableToCloseWithEsc(popup);
+        document.addEventListener('keydown', escCloseCallBack);
+        document.addEventListener('mousedown', overlayCloseCallBack);
     }    
 };
-
-function overlayCloseCallBack(popup, evt) {
-    if (popup.classList.contains('popup_opened') && evt.target === popup) { 
-        togglePopup(popup); 
-    } 
-}
-
-function ableToCloseWithOverlay (popup) { 
-    document.addEventListener('click', (evt) => overlayCloseCallBack(popup, evt)); 
-}; 
- 
-function escCloseCallBack (popup, evt) {
-    if (popup.classList.contains('popup_opened') && evt.key === "Escape" ) { 
-        togglePopup(popup); 
-    } 
-}
-
-function ableToCloseWithEsc(popup) { 
-    document.addEventListener('keydown', (evt) => escCloseCallBack (popup, evt)) 
-}; 
-
-function disableClosWithOverlay (popup) {
-    document.removeEventListener('click', (evt) => overlayCloseCallBack(popup, evt));
-}
-
-function disableToCloseWithEsc(popup) { 
-    document.removeEventListener('keydown', (evt) => escCloseCallBack (popup, evt)) 
-}; 
-
 
 initialCards.forEach(card => {
     const curCard = createCard(card);
