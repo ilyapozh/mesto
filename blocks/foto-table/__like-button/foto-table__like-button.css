@@ -8,6 +8,7 @@
     background-position: center;
     background-color: white;
     border: none;
+    outline:none;
 }
 
 .foto-table__like-button:hover {
