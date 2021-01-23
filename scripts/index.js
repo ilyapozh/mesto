@@ -1,3 +1,8 @@
+import {checkInputValidity} from './validation.js';
+import {Card} from './Card.js';
+import {initialCards} from './initialCards.js';
+
+
 const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
 const buttonClosePopupEdit = document.querySelector('.popup__close-button');
 const popupEdit = document.querySelector('.popup_content_edit-profile');
@@ -22,30 +27,6 @@ const popupPicName = popupFullPic.querySelector('.popup__pic-title');
 const buttonClosePopupFullPic = popupFullPic.querySelector('.popup__close-button');
 
 
-function createCard(item) {
-    const cardClone = cardTemplate.cloneNode(true);
-    
-    const cardImage = cardClone.querySelector('.foto-table__foto');
-    
-    cardClone.querySelector('.foto-table__name').textContent = item.name;
-    cardImage.src = item.link;
-    cardImage.alt = item.name;
-    cardClone.querySelector('.foto-table__like-button').addEventListener('click', function(evt) {
-        evt.target.classList.toggle('foto-table__like-button_black');
-    });
-    cardClone.querySelector('.foto-table__delete-button').addEventListener('click', function(evt) {
-        evt.target.closest('.foto-table__list').remove();
-    });
-
-    cardImage.addEventListener('click', function (evt) {
-        popupFullPicInput.src = item.link;
-        popupPicName.textContent = item.name;
-        togglePopup(popupFullPic);
-    });
-
-    return cardClone;
-}
-
 function overlayCloseCallBack(evt) {
     if (evt.target.classList.contains('popup_opened')) { 
         const openedPopup = document.querySelector('.popup_opened');
@@ -60,7 +41,7 @@ function escCloseCallBack (evt) {
     } 
 }
 
-function togglePopup(popup) {
+export function togglePopup(popup) {
     if (popup.classList.contains('popup_opened')) {
         popup.classList.toggle('popup_opened');
         document.removeEventListener('keydown', escCloseCallBack);
@@ -72,13 +53,6 @@ function togglePopup(popup) {
         document.addEventListener('mousedown', overlayCloseCallBack);
     }    
 };
-
-initialCards.forEach(card => {
-    const curCard = createCard(card);
-
-    fotoTable.append(curCard);
-
-});
 
 
 function formSubmitHandlerEdit (evt) {
@@ -98,7 +72,9 @@ function formSubmitHandlerAddPic (evt) {
         link: `${linkInput.value}`
     };
     
-    fotoTable.prepend(createCard(item));
+    const newCard = new Card(item, '#card', togglePopup);
+
+    fotoTable.prepend(newCard.generateCard());
     
     placeNameInput.value = '';
     linkInput.value = '';
