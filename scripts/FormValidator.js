@@ -4,7 +4,7 @@ export const validationConfig = {
     submitButtonSelector: '.popup__save-button',
     inactiveButtonClass: 'popup__save-button_state_notActive',
     inputErrorClass: 'popup__input_state_invalid',
-    errorClass: 'popup__error'
+    errorClass: '.popup__error'
   }
 
 export class FormValidator {
@@ -36,7 +36,7 @@ export class FormValidator {
         
     }
     
-    _setButtonState(button, isActive, validationConfig) {
+    setButtonState(button, isActive, validationConfig) {
         if(isActive) {
             button.classList.remove(validationConfig.inactiveButtonClass);
             button.disabled = false;
@@ -44,6 +44,19 @@ export class FormValidator {
             button.classList.add(validationConfig.inactiveButtonClass);
             button.disabled = true;
         }
+    }
+
+    resetInputAndError(openedPopup, validationConfig) {
+        const inputList = openedPopup.querySelectorAll(validationConfig.inputSelector);
+        const errorList = openedPopup.querySelectorAll(validationConfig.errorClass);
+        
+        errorList.forEach( error => {
+            error.textContent = '';
+        });
+    
+        inputList.forEach(input => {
+            input.classList.remove(validationConfig.inputErrorClass);
+        })
     }
 
     enableValidation() {
@@ -55,7 +68,7 @@ export class FormValidator {
         inputList.forEach ( input => {
             input.addEventListener('input', () => {
                 this._checkInputValidity(this._formElement, input, this._validationConfig);
-                this._setButtonState(button, this._formElement.checkValidity(), this._validationConfig);
+                this.setButtonState(button, this._formElement.checkValidity(), this._validationConfig);
             });
         });
     }
