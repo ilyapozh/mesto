@@ -49,29 +49,16 @@ function formSubmitHandlerAddPic (evt) {
         link: `${linkInput.value}`
     };
     
-    const newCard = new Card(item, '#card', togglePopup);
-
-    fotoTable.prepend(newCard.generateCard());
+    const newCard = createCard(item);
+    
+    fotoTable.prepend(newCard);
     
     placeNameInput.value = '';
     linkInput.value = '';
-    submitButtonAdd.disabled = true;
-    submitButtonAdd.classList.add('popup__save-button_state_notActive');
+    validatorAddPic.setButtonState(submitButtonAdd, false, validationConfig);
+    
 
     togglePopup(popupAddPic);
-}
-
-function resetInputAndError(openedPopup) {
-    const errorList = openedPopup.querySelectorAll('.popup__error');
-    const inputList = openedPopup.querySelectorAll('.popup__input');
-
-    errorList.forEach( error => {
-        error.textContent = '';
-    });
-
-    inputList.forEach(input => {
-        input.classList.remove('popup__input_state_invalid');
-    })
 }
 
 
@@ -81,16 +68,15 @@ function openEditPopup () {
     jobInput.value = profileJob.textContent;
     
     togglePopup(popupEdit);
-    const openedPopup = document.querySelector('.popup_opened');
-    resetInputAndError(openedPopup);
+    
+    validatorEditProfile.resetInputAndError(popupEdit, validationConfig);
 }
 
 function clearAddPicPopup() {
     placeNameInput.value = '';
     linkInput.value = '';
-    const openedPopup = document.querySelector('.popup_opened');
     
-    resetInputAndError(openedPopup);
+    validatorAddPic.resetInputAndError(popupAddPic, validationConfig);
     
 }
 
