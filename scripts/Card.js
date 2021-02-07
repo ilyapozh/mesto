@@ -1,5 +1,4 @@
 
-const fotoTable =  document.querySelector(".foto-table");
 const popupFullPic = document.querySelector('.popup_content_full-pic');
 const popupFullPicInput = popupFullPic.querySelector('.popup__background');
 const popupPicName = popupFullPic.querySelector('.popup__pic-title');
