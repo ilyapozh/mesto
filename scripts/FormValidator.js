@@ -36,26 +36,26 @@ export class FormValidator {
         
     }
     
-    setButtonState(button, isActive, validationConfig) {
+    setButtonState(button, isActive) {
         if(isActive) {
-            button.classList.remove(validationConfig.inactiveButtonClass);
+            button.classList.remove(this._validationConfig.inactiveButtonClass);
             button.disabled = false;
         } else {
-            button.classList.add(validationConfig.inactiveButtonClass);
+            button.classList.add(this._validationConfig.inactiveButtonClass);
             button.disabled = true;
         }
     }
 
-    resetInputAndError(openedPopup, validationConfig) {
-        const inputList = openedPopup.querySelectorAll(validationConfig.inputSelector);
-        const errorList = openedPopup.querySelectorAll(validationConfig.errorClass);
+    resetInputAndError(openedPopup) {
+        const inputList = openedPopup.querySelectorAll(this._validationConfig.inputSelector);
+        const errorList = openedPopup.querySelectorAll(this._validationConfig.errorClass);
         
         errorList.forEach( error => {
             error.textContent = '';
         });
     
         inputList.forEach(input => {
-            input.classList.remove(validationConfig.inputErrorClass);
+            input.classList.remove(this._validationConfig.inputErrorClass);
         })
     }
 
