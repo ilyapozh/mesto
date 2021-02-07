@@ -56,7 +56,7 @@ function formSubmitHandlerAddPic (evt) {
     placeNameInput.value = '';
     linkInput.value = '';
     validatorAddPic.setButtonState(submitButtonAdd, false, validationConfig);
-    submitButtonAdd.classList.add('popup__save-button_state_notActive');
+    
 
     togglePopup(popupAddPic);
 }
@@ -68,14 +68,13 @@ function openEditPopup () {
     jobInput.value = profileJob.textContent;
     
     togglePopup(popupEdit);
-    const openedPopup = document.querySelector('.popup_opened');
+    
     validatorEditProfile.resetInputAndError(popupEdit, validationConfig);
 }
 
 function clearAddPicPopup() {
     placeNameInput.value = '';
     linkInput.value = '';
-    const openedPopup = document.querySelector('.popup_opened');
     
     validatorAddPic.resetInputAndError(popupAddPic, validationConfig);
     
