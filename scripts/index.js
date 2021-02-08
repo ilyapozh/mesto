@@ -27,10 +27,12 @@ const popupFullPic = document.querySelector('.popup_content_full-pic');
 
 const buttonClosePopupFullPic = popupFullPic.querySelector('.popup__close-button');
 
+/*
 function createCard(card) {
     const cardElement = new Card(card, '#card', togglePopup);
     return cardElement.generateCard();
 };
+*/
 
 function formSubmitHandlerEdit (evt) {
     evt.preventDefault(); 
@@ -102,9 +104,12 @@ validatorEditProfile.enableValidation();
 const validatorAddPic = new FormValidator(validationConfig, formElementAddPic);
 validatorAddPic.enableValidation();
 
+/*
 initialCards.forEach(card => {
     const curCard = createCard(card);
 
     fotoTable.append(curCard);
 
 });
+
+*/
