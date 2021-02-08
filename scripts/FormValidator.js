@@ -14,24 +14,24 @@ export class FormValidator {
         this._formElement = formElement;
     }
 
-    _showError(form, input, validationConfig) {
+    _showError(form, input) {
         const error = form.querySelector(`#${input.id}-error`);
         error.textContent = input.validationMessage;
-        input.classList.add(validationConfig.inputErrorClass);
+        input.classList.add(this._validationConfig.inputErrorClass);
     }
     
-    _hideError(form, input, validationConfig) {
+    _hideError(form, input) {
         const error = form.querySelector(`#${input.id}-error`);
         error.textContent = '';
-        input.classList.remove(validationConfig.inputErrorClass);
+        input.classList.remove(this._validationConfig.inputErrorClass);
     }
     
-    _checkInputValidity(form, input, validationConfig) {
+    _checkInputValidity(form, input) {
         
         if (input.validity.valid) {
-            this._hideError(form, input, validationConfig);
+            this._hideError(form, input, this._validationConfig);
         } else {
-            this._showError(form, input, validationConfig);
+            this._showError(form, input, this._validationConfig);
         }
         
     }

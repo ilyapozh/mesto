@@ -55,7 +55,7 @@ function formSubmitHandlerAddPic (evt) {
     
     placeNameInput.value = '';
     linkInput.value = '';
-    validatorAddPic.setButtonState(submitButtonAdd, false, validationConfig);
+    validatorAddPic.setButtonState(submitButtonAdd, false);
     
 
     togglePopup(popupAddPic);
@@ -69,14 +69,14 @@ function openEditPopup () {
     
     togglePopup(popupEdit);
     
-    validatorEditProfile.resetInputAndError(popupEdit, validationConfig);
+    validatorEditProfile.resetInputAndError(popupEdit);
 }
 
 function clearAddPicPopup() {
     placeNameInput.value = '';
     linkInput.value = '';
     
-    validatorAddPic.resetInputAndError(popupAddPic, validationConfig);
+    validatorAddPic.resetInputAndError(popupAddPic);
     
 }
 
