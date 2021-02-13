@@ -1,4 +1,6 @@
 
+import { PopupWithImage } from "./PopupWithImage.js";
+
 const popupFullPic = document.querySelector('.popup_content_full-pic');
 const popupFullPicInput = popupFullPic.querySelector('.popup__background');
 const popupPicName = popupFullPic.querySelector('.popup__pic-title');
@@ -8,11 +10,11 @@ const popupFullPicImg = popupFullPic.querySelector('.popup__background');
 
 export class Card {
     
-    constructor(data, templateSelector, openImagePopup) {
+    constructor({data, handleCardClick}, templateSelector) {
         this._fotoTitle = data.name;
         this._fotoLink = data.link;
         this._templateSelector = templateSelector;
-        this._openImagePopup = openImagePopup;
+        this._handleCardClick = handleCardClick;
     }
 
 
@@ -34,10 +36,7 @@ export class Card {
         });
 
         this._currentFoto.addEventListener('click', evt => {
-            popupFullPicInput.src = evt.target.src;
-            popupPicName.textContent = evt.target.nextElementSibling.querySelector('.foto-table__name').textContent;
-            popupFullPicImg.alt = evt.target.nextElementSibling.querySelector('.foto-table__name').textContent;
-            this._openImagePopup(popupFullPic);
+            this._handleCardClick()
         });
     }
 

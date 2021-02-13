@@ -1,35 +1,11 @@
 import { togglePopup } from "../utils/utils.js";
 import { Card } from "./Card.js";
-const fotoTable = document.querySelector('.foto-table')
+import {initialCards} from "./initialCards.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 
-export const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
 
-export default class Section {
+
+export class Section {
 
     constructor({items, renderer}, containerSelector) {
         this._renderedItems = items;
@@ -46,6 +22,7 @@ export default class Section {
     }
 }
 
+/*
 function createCard(card) {
     const cardElement = new Card(card, '#card', togglePopup);
     return cardElement.generateCard();
@@ -57,15 +34,27 @@ initialCards.forEach(card => {
     fotoTable.append(curCard);
 
 });
-
+*/
 const cardList = new Section({
     items: initialCards,
-    renderer: (item) => {
-        const newCard = new Card(item, '#card', togglePopup)
+    renderer: (data) => {
+        const newCard = new Card({
+            data, 
+            handleCardClick: () => {
+                const popupWithImage = new PopupWithImage(data, '.popup_content_full-pic');
+                popupWithImage.setEventListeners();
+                popupWithImage.open();
+            }
+        },
+        '#card'
+        )
+
         const newCardElement = newCard.generateCard()
 
         cardList.setItem(newCardElement);
     },
 },
-fotoTable
+'.foto-table'
 )
+
+cardList.renderCards()

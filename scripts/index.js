@@ -3,6 +3,8 @@ import {Card} from './Card.js';
 import {FormValidator, validationConfig} from './FormValidator.js';
 import {togglePopup} from '../utils/utils.js';
 import {initialCards} from './initialCards.js';
+import {Popup} from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
 
 
 const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
@@ -27,10 +29,12 @@ const popupFullPic = document.querySelector('.popup_content_full-pic');
 
 const buttonClosePopupFullPic = popupFullPic.querySelector('.popup__close-button');
 
+/*
 function createCard(card) {
     const cardElement = new Card(card, '#card', togglePopup);
     return cardElement.generateCard();
 };
+*/
 
 function formSubmitHandlerEdit (evt) {
     evt.preventDefault(); 
@@ -81,14 +85,22 @@ function clearAddPicPopup() {
 }
 
 
+
 formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 formElementAddPic.addEventListener('submit', formSubmitHandlerAddPic);
 
-buttonClosePopupEdit.addEventListener('click', () => togglePopup(popupEdit));
+// buttonClosePopupEdit.addEventListener('click', () => togglePopup(popupEdit));
 buttonClosePopupAddPic.addEventListener('click', () => togglePopup(popupAddPic));
 buttonClosePopupFullPic.addEventListener('click', () => togglePopup(popupFullPic));
 
-buttonOpenPopupEdit.addEventListener('click', openEditPopup);
+buttonOpenPopupEdit.addEventListener('click', () => {
+    // openEditPopup()
+    const editPopup = new PopupWithForm('.popup_content_edit-profile', () => callBackSubmit());
+    editPopup.open();
+    editPopup.setEventListeners();
+    
+    }
+);
 buttonOpenPopupAddPic.addEventListener('click', () => {
     togglePopup(popupAddPic)
     clearAddPicPopup()
@@ -102,9 +114,12 @@ validatorEditProfile.enableValidation();
 const validatorAddPic = new FormValidator(validationConfig, formElementAddPic);
 validatorAddPic.enableValidation();
 
+/*
 initialCards.forEach(card => {
     const curCard = createCard(card);
 
     fotoTable.append(curCard);
 
 });
+
+*/
