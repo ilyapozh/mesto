@@ -1,9 +1,11 @@
 import { togglePopup } from "../utils/utils.js";
 import { Card } from "./Card.js";
 import {initialCards} from "./initialCards.js";
+import { PopupWithImage } from "./PopupWithImage.js";
 
-const fotoTable = document.querySelector('.foto-table')
-export default class Section {
+
+
+export class Section {
 
     constructor({items, renderer}, containerSelector) {
         this._renderedItems = items;
@@ -20,6 +22,7 @@ export default class Section {
     }
 }
 
+/*
 function createCard(card) {
     const cardElement = new Card(card, '#card', togglePopup);
     return cardElement.generateCard();
@@ -31,15 +34,27 @@ initialCards.forEach(card => {
     fotoTable.append(curCard);
 
 });
-
+*/
 const cardList = new Section({
     items: initialCards,
-    renderer: (item) => {
-        const newCard = new Card(item, '#card', togglePopup)
+    renderer: (data) => {
+        const newCard = new Card({
+            data, 
+            handleCardClick: () => {
+                const popupWithImage = new PopupWithImage(data, '.popup_content_full-pic');
+                popupWithImage.setEventListeners();
+                popupWithImage.open();
+            }
+        },
+        '#card'
+        )
+
         const newCardElement = newCard.generateCard()
 
         cardList.setItem(newCardElement);
     },
 },
-fotoTable
+'.foto-table'
 )
+
+cardList.renderCards()

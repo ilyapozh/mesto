@@ -3,6 +3,8 @@ import {Card} from './Card.js';
 import {FormValidator, validationConfig} from './FormValidator.js';
 import {togglePopup} from '../utils/utils.js';
 import {initialCards} from './initialCards.js';
+import {Popup} from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
 
 
 const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
@@ -83,14 +85,22 @@ function clearAddPicPopup() {
 }
 
 
+
 formElementEdit.addEventListener('submit', formSubmitHandlerEdit);
 formElementAddPic.addEventListener('submit', formSubmitHandlerAddPic);
 
-buttonClosePopupEdit.addEventListener('click', () => togglePopup(popupEdit));
+// buttonClosePopupEdit.addEventListener('click', () => togglePopup(popupEdit));
 buttonClosePopupAddPic.addEventListener('click', () => togglePopup(popupAddPic));
 buttonClosePopupFullPic.addEventListener('click', () => togglePopup(popupFullPic));
 
-buttonOpenPopupEdit.addEventListener('click', openEditPopup);
+buttonOpenPopupEdit.addEventListener('click', () => {
+    // openEditPopup()
+    const editPopup = new PopupWithForm('.popup_content_edit-profile', () => callBackSubmit());
+    editPopup.open();
+    editPopup.setEventListeners();
+    
+    }
+);
 buttonOpenPopupAddPic.addEventListener('click', () => {
     togglePopup(popupAddPic)
     clearAddPicPopup()
