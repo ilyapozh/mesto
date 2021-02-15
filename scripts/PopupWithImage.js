@@ -6,15 +6,16 @@ const popupPicName = popupFullPic.querySelector('.popup__pic-title');
 const popupFullPicImg = popupFullPic.querySelector('.popup__background');
 
 export class PopupWithImage extends Popup {
-    constructor (data, popupSelector) {
+    constructor (popupSelector) {
         super(popupSelector);
-        this._data = data;
+        
+       
     }
 
-    open() {
-        popupFullPicInput.src = this._data.link;
-        popupPicName.textContent = this._data.name;
-        popupFullPicInput.alt = this._data.name;
+    open(data) {
+        popupFullPicInput.src = data.link;
+        popupPicName.textContent = data.name;
+        popupFullPicInput.alt = data.name;
         super.open()
     }
 }

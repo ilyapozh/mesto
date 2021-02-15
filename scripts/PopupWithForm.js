@@ -1,5 +1,7 @@
 import { Popup } from "./Popup.js";
 
+
+
 export class PopupWithForm extends Popup {
     constructor(popupSelector, callBackSubmit) {
         super(popupSelector);
@@ -18,13 +20,17 @@ export class PopupWithForm extends Popup {
         this._closeButton.addEventListener('click', () => this.close());
 
         this._submitForm = this._popup.querySelector('.popup__container');
-        this._submitForm.addEventListener('click', this._callBackSubmit());
-        
+        this._submitForm.addEventListener('submit', (evt) => {
+            this._callBackSubmit(evt)
+            this.close()
+        }
+        );
+            
     }
 
     close() {
-        document.removeEventListener('keydown', (evt) => this._handleEscClose(evt))
-        document.removeEventListener('click', (evt) => this._handleOverlayClose(evt));
-        this._popup.classList.remove('popup_opened')
+        document.removeEventListener('keydown', (evt) => super._handleEscClose(evt))
+        document.removeEventListener('click', (evt) => super._handleOverlayClose(evt));
+        this._popup.classList.remove('popup_opened');
     }
 }
