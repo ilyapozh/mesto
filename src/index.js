@@ -1,20 +1,18 @@
 
-import {Card} from './Card.js';
-import {FormValidator, validationConfig} from './FormValidator.js';
-import {initialCards} from './initialCards.js';
-import { PopupWithForm } from './PopupWithForm.js';
-import {Section} from './Section.js'
-import {PopupWithImage} from './PopupWithImage.js'
+import {Card} from './scripts/Card.js';
+import {FormValidator, validationConfig} from './scripts/FormValidator.js';
+import {initialCards} from './scripts/initialCards.js';
+import { PopupWithForm } from './scripts/PopupWithForm.js';
+import {Section} from './scripts/Section.js'
+import {PopupWithImage} from './scripts/PopupWithImage.js';
+import {UserInfo} from './scripts/UserInfo.js';
+import './index.css';
 
 
 const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_content_edit-profile');
 const formElementEdit = popupEdit.querySelector('.popup__container');
 const submitEditProfileButton = popupEdit.querySelector('.popup__save-button')
-const nameInput = formElementEdit.querySelector('.popup__input_content_name');
-const jobInput = formElementEdit.querySelector('.popup__input_content_job');
-const profileName = document.querySelector('.profile__user-name');
-const profileJob = document.querySelector('.profile__profession');
 const popupAddPic = document.querySelector('.popup_content_add-pic');
 const buttonOpenPopupAddPic = document.querySelector('.profile__add-pic-button');
 const formElementAddPic = popupAddPic.querySelector('.popup__container');
@@ -55,17 +53,21 @@ const cardList = new Section({
 
 cardList.renderCards()
 
+const userInfo = new UserInfo({
+    nameSelector: '.popup__input_content_name',
+    aboutSelector: '.popup__input_content_job',
+});
+
 const editPopup = new PopupWithForm('.popup_content_edit-profile', (evt) => {
     evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileJob.textContent = jobInput.value;
+    userInfo.setUserInfo();
 });
 editPopup.setEventListeners();
 
+
 buttonOpenPopupEdit.addEventListener('click', () => {
-    validatorEditProfile.resetInputAndError(popupEdit)
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
+    validatorEditProfile.resetInputAndError(popupEdit);
+    userInfo.getUserInfo();
     editPopup.open();   
 });
 

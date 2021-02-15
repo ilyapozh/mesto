@@ -9,7 +9,7 @@
     background-color: transparent;
     border: none;
     background-position: center;
-    background-image: url(../../../images/Close\ Icon.svg);
+    background-image: url('../../../images/CloseIcon.svg');
     outline: none;
 }
 
