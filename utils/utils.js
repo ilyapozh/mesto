@@ -24,3 +24,4 @@ export function togglePopup(popup) {
         document.addEventListener('mousedown', overlayCloseCallBack);
     }    
 };
+
