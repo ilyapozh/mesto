@@ -2,7 +2,7 @@
 import {Card} from './scripts/Card.js';
 import {FormValidator, validationConfig} from './scripts/FormValidator.js';
 import {initialCards} from './scripts/initialCards.js';
-import { PopupWithForm } from './scripts/PopupWithForm.js';
+import {PopupWithForm} from './scripts/PopupWithForm.js';
 import {Section} from './scripts/Section.js'
 import {PopupWithImage} from './scripts/PopupWithImage.js';
 import {UserInfo} from './scripts/UserInfo.js';
@@ -16,14 +16,23 @@ const submitEditProfileButton = popupEdit.querySelector('.popup__save-button')
 const popupAddPic = document.querySelector('.popup_content_add-pic');
 const buttonOpenPopupAddPic = document.querySelector('.profile__add-pic-button');
 const formElementAddPic = popupAddPic.querySelector('.popup__container');
-const placeNameInput = formElementAddPic.querySelector('.popup__input_content_place-name');
-const linkInput = formElementAddPic.querySelector('.popup__input_content_link');
 
-
+function createCard(data) {
+    const card = new Card ({
+        data, 
+        handleCardClick: () => {
+            popupWithImage.open(data);
+        }
+    },
+    '#card'
+    )
+    const newCard = card.generateCard()
+    return newCard
+}
 
 const validatorEditProfile = new FormValidator(validationConfig, formElementEdit);
 validatorEditProfile.enableValidation();
-validatorEditProfile.setButtonState(submitEditProfileButton , false)
+validatorEditProfile.setButtonState(false);
 
 const validatorAddPic = new FormValidator(validationConfig, formElementAddPic);
 validatorAddPic.enableValidation();
@@ -34,16 +43,8 @@ popupWithImage.setEventListeners();
 const cardList = new Section({
     items: initialCards,
     renderer: (data) => {
-        const newCard = new Card({
-            data, 
-            handleCardClick: () => {
-                popupWithImage.open(data)
-            }
-        },
-        '#card'
-        )
 
-        const newCardElement = newCard.generateCard()
+        const newCardElement = createCard(data);
 
         cardList.setItem(newCardElement);
     },
@@ -54,56 +55,45 @@ const cardList = new Section({
 cardList.renderCards()
 
 const userInfo = new UserInfo({
-    nameSelector: '.popup__input_content_name',
-    aboutSelector: '.popup__input_content_job',
+    nameSelector: '.profile__user-name',
+    aboutSelector: '.profile__profession',
 });
 
-const editPopup = new PopupWithForm('.popup_content_edit-profile', (evt) => {
-    evt.preventDefault();
-    userInfo.setUserInfo();
+const editPopup = new PopupWithForm('.popup_content_edit-profile', (formValues) => {
+    const info = {
+        name: formValues.name,
+        about: formValues.job
+    }
+    userInfo.setUserInfo(info);
 });
 editPopup.setEventListeners();
 
 
 buttonOpenPopupEdit.addEventListener('click', () => {
-    validatorEditProfile.resetInputAndError(popupEdit);
-    userInfo.getUserInfo();
+    validatorEditProfile.resetInputAndError();
+    const currentUserInfo = userInfo.getUserInfo();
+    userInfo.pasteUserInfo(currentUserInfo);
     editPopup.open();   
 });
 
 
-const addPicPopup = new PopupWithForm('.popup_content_add-pic', (evt) => {
-        
-    evt.preventDefault();
+const addPicPopup = new PopupWithForm('.popup_content_add-pic', (formValues) => {
     const data = {
-        name: `${placeNameInput.value}`,
-        link: `${linkInput.value}`
+        name: `${formValues.picName}`,
+        link: `${formValues.picLink}`
     }
+    
+    const newCard = createCard(data);
 
-    const newCard = new Card ({
-        data, 
-        handleCardClick: () => {
-            const popupWithImage = new PopupWithImage('.popup_content_full-pic');
-            popupWithImage.setEventListeners();
-            popupWithImage.open(data);
-        }
-    },
-    '#card'
-    )
-
-    const newCardElement = newCard.generateCard()
-    cardList.setItem(newCardElement)
-
+    cardList.prependItem(newCard)
+    
 })
 
 addPicPopup.setEventListeners();
 
 buttonOpenPopupAddPic.addEventListener('click', () => {
-    placeNameInput.value = '';
-    linkInput.value = '';
-    validatorAddPic.resetInputAndError(popupAddPic)
-    addPicPopup.open();
-        
+    validatorAddPic.resetInputAndError()
+    addPicPopup.open()
 });
     
 
