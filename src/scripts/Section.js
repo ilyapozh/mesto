@@ -6,6 +6,10 @@ export class Section {
         this._container = document.querySelector(containerSelector);
     }
 
+    prependItem(item) {
+        this._container.prepend(item);
+    }
+
     renderCards() {
         this._renderedItems.forEach(card => this._renderer(card));
     }
