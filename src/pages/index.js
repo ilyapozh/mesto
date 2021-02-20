@@ -1,18 +1,17 @@
 
-import {Card} from './scripts/Card.js';
-import {FormValidator, validationConfig} from './scripts/FormValidator.js';
-import {initialCards} from './scripts/initialCards.js';
-import {PopupWithForm} from './scripts/PopupWithForm.js';
-import {Section} from './scripts/Section.js'
-import {PopupWithImage} from './scripts/PopupWithImage.js';
-import {UserInfo} from './scripts/UserInfo.js';
+import {Card} from '../components/Card.js';
+import {FormValidator, validationConfig} from '../components/FormValidator.js';
+import {initialCards} from '../components/initialCards.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {Section} from '../components/Section.js'
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {UserInfo} from '../components/UserInfo.js';
 import './index.css';
 
 
 const buttonOpenPopupEdit = document.querySelector('.profile__edit-button');
 const popupEdit = document.querySelector('.popup_content_edit-profile');
 const formElementEdit = popupEdit.querySelector('.popup__container');
-const submitEditProfileButton = popupEdit.querySelector('.popup__save-button')
 const popupAddPic = document.querySelector('.popup_content_add-pic');
 const buttonOpenPopupAddPic = document.querySelector('.profile__add-pic-button');
 const formElementAddPic = popupAddPic.querySelector('.popup__container');
