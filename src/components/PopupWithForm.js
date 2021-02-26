@@ -25,9 +25,7 @@ export class PopupWithForm extends Popup {
             evt.preventDefault();
             this._callBackSubmit(this._getInputValues())
             this.close()
-        }
-        );
-            
+        });
     }
 
     close() {

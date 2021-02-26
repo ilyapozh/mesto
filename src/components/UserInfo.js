@@ -1,10 +1,14 @@
 export class UserInfo {
-    constructor({nameSelector, aboutSelector}) {
+    constructor({nameSelector, aboutSelector}, callBack) {
         this._nameElement = document.querySelector(nameSelector);
         this._aboutElement = document.querySelector(aboutSelector);
+        this._nameInput = document.querySelector('#name-input');
+        this._jobInput = document.querySelector('#job-input');
+        this._callBack = callBack;
     }
 
     getUserInfo() {
+        this._callBack();
         const userInfo = {};
         userInfo.name = this._nameElement.textContent;
         userInfo.about = this._aboutElement.textContent;
@@ -17,7 +21,7 @@ export class UserInfo {
     }
 
     pasteUserInfo(info) {
-        document.querySelector('#name-input').value = info.name;
-        document.querySelector('#job-input').value = info.about;
+        this._nameInput.value = info.name;
+        this._jobInput.value = info.about;
     }
 }
