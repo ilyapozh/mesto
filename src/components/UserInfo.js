@@ -24,4 +24,8 @@ export class UserInfo {
         this._nameInput.value = info.name;
         this._jobInput.value = info.about;
     }
+
+    setUserAvatar(avaLink) {
+        document.querySelector('.profile__foto').src = avaLink;
+    }
 }

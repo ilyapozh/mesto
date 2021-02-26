@@ -4,11 +4,6 @@
     
 }
 
-.profile__foto:hover {
-    background-color: black;
-    opacity: 0.5;
-    
-}
 
 @media screen and (max-width: 767px) {
     .profile__foto {

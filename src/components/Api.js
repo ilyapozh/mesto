@@ -15,6 +15,7 @@ export class Api {
                 })
                 .then(res => {
                     if (res.ok) {
+                        
                         return res.json()
                     }
                     return (res.status)
@@ -119,6 +120,27 @@ export class Api {
             }
             return Promise.reject(`Ошибка: ${res.status}`)
         })
+    }
+
+    changeAvatar(avatarLink) {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-20/users/me/avatar', {
+            method: 'PATCH',
+            headers: {
+                authorization: this._authorization,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify ({
+                avatar: `${avatarLink}`
+            })
+
+        })
+        .then(res => {
+            if (res.ok) {
+                return res.json()
+            }
+            return Promise.reject(`Ошибка: ${res.status}`)
+        })
+
     }
     
 

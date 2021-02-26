@@ -17,7 +17,7 @@ const buttonOpenPopupAddPic = document.querySelector('.profile__add-pic-button')
 const formElementAddPic = popupAddPic.querySelector('.popup__container');
 const popupAvatar = document.querySelector('.popup_content_change-ava');
 const formElementChangeAvatar = popupAvatar.querySelector('.popup__container');
-const avatarPic = document.querySelector('.profile__foto');
+const linkAvatarPic = document.querySelector('.profile__container');
 
 
 const api =  new Api({
@@ -169,13 +169,18 @@ const deletePopup = new PopupWithSubmit('.popup_content_delete', () => {
 deletePopup.setEventListeners();
 
 
-const popupChangeAvatar = new PopupWithForm('.popup_content_change-ava', () => {
-
+const popupChangeAvatar = new PopupWithForm('.popup_content_change-ava', (avatarLink) => {
+    console.log(avatarLink.avaLink)
+    api.changeAvatar(avatarLink.avaLink)
+    .then(res => {
+        console.log(res)
+        linkAvatarPic.querySelector('.profile__foto').src = res.avatar;
+    })
 })
 popupChangeAvatar.setEventListeners()
 
 
-avatarPic.addEventListener('click', () => {
+linkAvatarPic.addEventListener('click', () => {
     validatorAvatar.resetInputAndError();
     popupChangeAvatar.open()
 })
@@ -185,6 +190,8 @@ avatarPic.addEventListener('click', () => {
 api.getUserInfo()
 .then(userInformation => {
     userInfo.setUserInfo(userInformation)
+    userInfo.setUserAvatar(userInformation.avatar)
+    console.log(userInformation.avatar)
 })
 .catch(err => console.log(err))
 

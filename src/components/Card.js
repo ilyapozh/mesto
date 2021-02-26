@@ -13,7 +13,6 @@ export class Card {
         this._myId = myId;
     }
 
-
     _getTemplate() {
         const cardElement = document.querySelector(this._templateSelector).content.querySelector('.foto-table__list').cloneNode(true);
         
@@ -65,6 +64,10 @@ export class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._setEventListeners();
+        
+        if (this._checkIsLiked()) {
+            this._element.querySelector('.foto-table__like-button').classList.add('foto-table__like-button_black')
+        }
         
         if (this._ownerId !== this._myId) {
             this._element.querySelector('.foto-table__delete-button').classList.add('foto-table__delete-button_content_hidden');
