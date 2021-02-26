@@ -1,0 +1,33 @@
+
+.profile__container {
+    display: block;
+    position: relative;
+    
+}
+
+.profile__container::before {
+    position: absolute;
+    content: '';
+    width: 120px;
+    height: 120px;
+    background-image: url('../../../images/EditAvatar.png');
+    background-color:rgba(0, 0, 0, 0.8);
+    background: no-repeat;
+    background-position: center;
+    
+}
+
+.profile__container:hover::before {
+    cursor: pointer;
+    background-image: url('../../../images/EditAvatar.png');
+    background-color:rgba(0, 0, 0, 0.8);
+
+}
+
+
+@media screen and (max-width: 767px) {
+    .profile__foto {
+        align-self: center;
+        margin-bottom: 20px;
+    }
+}
