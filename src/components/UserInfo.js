@@ -1,14 +1,14 @@
 export class UserInfo {
-    constructor({nameSelector, aboutSelector}, callBack) {
+    constructor({nameSelector, aboutSelector, avatarSelector}) {
         this._nameElement = document.querySelector(nameSelector);
         this._aboutElement = document.querySelector(aboutSelector);
         this._nameInput = document.querySelector('#name-input');
         this._jobInput = document.querySelector('#job-input');
-        this._callBack = callBack;
+        
+        this._avatarElement = document.querySelector(avatarSelector);
     }
 
     getUserInfo() {
-        this._callBack();
         const userInfo = {};
         userInfo.name = this._nameElement.textContent;
         userInfo.about = this._aboutElement.textContent;
@@ -18,6 +18,7 @@ export class UserInfo {
     setUserInfo(info) {
         this._nameElement.textContent = info.name;
         this._aboutElement.textContent = info.about;
+        this._userId = info._id
     }
 
     pasteUserInfo(info) {
@@ -26,6 +27,10 @@ export class UserInfo {
     }
 
     setUserAvatar(avaLink) {
-        document.querySelector('.profile__foto').src = avaLink;
+        this._avatarElement.src = avaLink;
+    }
+
+    getUserId() {
+        return this._userId
     }
 }

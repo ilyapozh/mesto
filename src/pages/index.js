@@ -45,22 +45,18 @@ function createCard(data) {
                 .then(res => {
                     console.log(res)
                     card.resetLikesArray(res.likes)
-                    card.pasteLikesNumber(res.likes.length)
-                    card.paintLikeHeart()
                 })
             } else {
                 api.putLike(cardId)
                 .then(res => {
                     console.log(res)
                     card.resetLikesArray(res.likes)
-                    card.pasteLikesNumber(res.likes.length)
-                    card.paintLikeHeart()
                 })
             }
         }
     },
     '#card',
-    'feeb4b325be842a88fe5cb6a'
+    userInfo.getUserId()
     )
     const newCard = card.generateCard()
     return newCard
@@ -96,11 +92,8 @@ const cardList = new Section({
 const userInfo = new UserInfo({
     nameSelector: '.profile__user-name',
     aboutSelector: '.profile__profession',
-}, 
-    function getUserInfoCallBack() {
-        api.getUserInfo()
-    }
-);
+    avatarSelector: '.profile__foto'
+});
 
 const editPopup = new PopupWithForm('.popup_content_edit-profile', (formValues) => {
     const info = {
@@ -134,7 +127,7 @@ const addPicPopup = new PopupWithForm('.popup_content_add-pic', (formValues) => 
         link: `${formValues.picLink}`,
         likes: [],
         owner: {
-            _id: 'feeb4b325be842a88fe5cb6a',
+            _id: userInfo.getUserId(),
         }
     }
     
@@ -173,8 +166,7 @@ const popupChangeAvatar = new PopupWithForm('.popup_content_change-ava', (avatar
     console.log(avatarLink.avaLink)
     api.changeAvatar(avatarLink.avaLink)
     .then(res => {
-        console.log(res)
-        linkAvatarPic.querySelector('.profile__foto').src = res.avatar;
+        userInfo.setUserAvatar(res.avatar)
     })
 })
 popupChangeAvatar.setEventListeners()
@@ -191,7 +183,6 @@ api.getUserInfo()
 .then(userInformation => {
     userInfo.setUserInfo(userInformation)
     userInfo.setUserAvatar(userInformation.avatar)
-    console.log(userInformation.avatar)
 })
 .catch(err => console.log(err))
 

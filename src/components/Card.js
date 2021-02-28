@@ -29,16 +29,10 @@ export class Card {
         return this._isLiked
     }
 
-    paintLikeHeart() {
-        this._element.querySelector('.foto-table__like-button').classList.toggle('foto-table__like-button_black')
-    }
-
-    pasteLikesNumber(num) {
-        this._element.querySelector('.foto-table__likes-number').textContent = num;
-    }
-
     resetLikesArray(newLikesArr) {
-        this._likesArray = newLikesArr
+        this._likesArray = newLikesArr;
+        this._element.querySelector('.foto-table__likes-number').textContent = newLikesArr.length;
+        this._element.querySelector('.foto-table__like-button').classList.toggle('foto-table__like-button_black')
     }
 
     _setEventListeners() {
